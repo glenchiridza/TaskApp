@@ -4,7 +4,9 @@
     <list default="true" id="2cb4d148-d505-427a-a23a-7d0304047384" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task_base/templates/task_base/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/task_base/templates/task_base/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_base/templates/task_base/goal_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/task_base/templates/task_base/goal_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_base/templates/task_base/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/task_base/templates/task_base/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task_base/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/task_base/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task_base/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/task_base/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
