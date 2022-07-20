@@ -20,13 +20,17 @@ class CustomLoginView(LoginView):
 
 class GoalCreateView(LoginRequiredMixin,generic.CreateView):
     model = Goal
-    fields = "__all__"
+    fields = ('title','content','is_complete')
     success_url = reverse_lazy('goal_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(GoalCreateView, self).form_valid(form)
 
 
 class GoalUpdateView(generic.UpdateView):
     model = Goal
-    fields = "__all__"
+    fields = ('title','content','is_complete')
     success_url = reverse_lazy('goal_list')
 
 
@@ -37,6 +41,7 @@ class GoalListView(LoginRequiredMixin,generic.ListView):
     def get_context_data(self,**kwargs):
         context = super(GoalListView, self).get_context_data(**kwargs)
         context['goals'] = context['goals'].filter(user = self.request.user)
+        context['count'] = context['goals'].filter(is_complete=False).count()
         return context
 
 
