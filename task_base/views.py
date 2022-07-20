@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
 
@@ -6,6 +6,8 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+
+from django.db.models import Q
 
 from .models import Goal
 
@@ -30,6 +32,11 @@ class RegisterView(generic.FormView):
         if user is not None:
             login(self.request.user)
         return super(RegisterView, self).form_valid(form)
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('goal_list')
+        return super(RegisterView, self).get(*args,**kwargs)
 
 
 class GoalCreateView(LoginRequiredMixin, generic.CreateView):
@@ -56,6 +63,14 @@ class GoalListView(LoginRequiredMixin, generic.ListView):
         context = super(GoalListView, self).get_context_data(**kwargs)
         context['goals'] = context['goals'].filter(user=self.request.user)
         context['count'] = context['goals'].filter(is_complete=False).count()
+
+        search_input = self.request.GET.get('search') if self.request.GET.get('search') is not None else ''
+        if search_input:
+            context['goals'] = context['goals'].filter(
+                Q(title__icontains=search_input) |
+                Q(content__icontains=search_input)
+            )
+        context['search_input'] = search_input
         return context
 
 

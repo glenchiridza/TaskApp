@@ -1,5 +1,5 @@
 {% if request.user.is_authenticated %}
-    <p>logged in as {{request.user}}</p>
+    <p>Hello {{request.user|title}}</p>
     <a href="{% url 'logout' %}">logout</a>
 {% else %}
     <a href="{% url 'login'%}">login</a>
@@ -11,17 +11,38 @@
 
 <div>
     <p><a href="{% url 'goal_create' %}"> New Goal</a> </p>
+    <form method="GET">
+        <input type="text" name="search" value="{{search_input}}" />
+        <input type="submit" value="Search"/>
+    </form>
 
     <h1>Item</h1>
     <div>
+
+
         {% for goal in goals %}
+            {% if not goal.is_complete %}
+        <p><b>You have {{count}} goal(s) to be done</b></p>
+
             <p>{{goal.title}}
                 <span><a href="{% url 'goal_detail' goal.id %}"> View</a> </span>
                 <span><a href="{% url 'goal_update' goal.id %}"> Edit</a> </span>
                 <span><a href="{% url 'goal_delete' goal.id %}"> Delete</a> </span>
             </p>
+            {% else %}
+
+        <p><b>goals done</b></p>
+            <p><strike>{{goal.title}}</strike></p>
+
+
+            {% endif %}
+
         {% empty %}
         <h3>No goals in listed</h3>
         {% endfor %}
+
+
+
+
     </div>
 </div>
