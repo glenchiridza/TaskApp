@@ -8,6 +8,8 @@
         {% for goal in goals %}
             <p>{{goal.title}}
                 <span><a href="{% url 'goal_detail' goal.id %}"> View</a> </span>
+                <span><a href="{% url 'goal_update' goal.id %}"> Edit</a> </span>
+                <span><a href="{% url 'goal_delete' goal.id %}"> Delete</a> </span>
             </p>
         {% empty %}
         <h3>No goals in listed</h3>
