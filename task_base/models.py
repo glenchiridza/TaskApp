@@ -11,7 +11,7 @@ class Goal(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['complete']
+        ordering = ['is_complete']
 
     def __str__(self):
         return self.title

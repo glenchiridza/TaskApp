@@ -1,0 +1,12 @@
+<h1>Goal Listing</h1>
+
+<div>
+    <p>Item</p>
+    <ul>
+        {% for goal in goals %}
+            <li>{{goal}}</li>
+        {% empty %}
+        <h3>No goals in listed</h3>
+        {% endfor %}
+    </ul>
+</div>
