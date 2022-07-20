@@ -2,7 +2,7 @@
     <p>logged in as {{request.user}}</p>
     <a href="">logout</a>
 {% else %}
-    <a href="">login</a>
+    <a href="{% url 'login'%}">login</a>
 {% endif %}
 
 <hr/>
