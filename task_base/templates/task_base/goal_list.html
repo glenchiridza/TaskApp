@@ -1,12 +1,16 @@
 <h1>Goal Listing</h1>
 
 <div>
-    <p>Item</p>
-    <ul>
+    <p><a href="{% url 'goal_create' %}"> New Goal</a> </p>
+
+    <h1>Item</h1>
+    <div>
         {% for goal in goals %}
-            <li>{{goal}}</li>
+            <p>{{goal.title}}
+                <span><a href="{% url 'goal_detail' goal.id %}"> View</a> </span>
+            </p>
         {% empty %}
         <h3>No goals in listed</h3>
         {% endfor %}
-    </ul>
+    </div>
 </div>
