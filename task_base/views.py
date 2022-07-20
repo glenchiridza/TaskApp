@@ -34,6 +34,11 @@ class GoalListView(LoginRequiredMixin,generic.ListView):
     model = Goal
     context_object_name = 'goals'
 
+    def get_context_data(self,**kwargs):
+        context = super(GoalListView, self).get_context_data(**kwargs)
+        context['goals'] = context['goals'].filter(user = self.request.user)
+        return context
+
 
 class GoalDetailView(LoginRequiredMixin,generic.DetailView):
     model = Goal
